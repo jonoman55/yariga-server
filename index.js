@@ -15,6 +15,9 @@ import propertyRoutes from "./routes/property.routes.js";
 const app = express();
 
 const env = process.env.NODE_ENV;
+const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || 'localhost';
+const MONGODB_URL = process.env.MONGODB_URL;
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
@@ -29,14 +32,12 @@ app.get('/', (req, res) => {
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/properties", propertyRoutes);
 
-const PORT = process.env.PORT || 8080;
-
 const startServer = async () => {
   try {
-    connectDB(process.env.MONGODB_URL);
+    connectDB(MONGODB_URL);
     app.listen(PORT, () => {
       if (env === 'development') {
-        logger.info(`Server started on http://${process.env.HOST}:${PORT}`);
+        logger.info(`Server started on http://${HOST}:${PORT}`);
       } else {
         logger.info('Server successfully started');
       }
