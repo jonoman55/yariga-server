@@ -36,7 +36,7 @@ const startServer = async () => {
   try {
     connectDB(MONGODB_URL);
     app.listen(PORT, () => {
-      if (env === 'development') {
+      if (NODE_ENV === 'development') {
         logger.info(`Server started on http://${HOST}:${PORT}`);
       } else {
         logger.info('Server successfully started');
