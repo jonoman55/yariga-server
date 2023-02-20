@@ -14,7 +14,7 @@ import propertyRoutes from "./routes/property.routes.js";
 
 const app = express();
 
-const env = process.env.NODE_ENV;
+const NODE_ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || 'localhost';
 const MONGODB_URL = process.env.MONGODB_URL;
@@ -25,7 +25,7 @@ app.use(httpMiddleware);
 
 app.get('/', (req, res) => {
   res.status(200).json({
-    message: `Yariga server is running in ${env}`
+    message: `Yariga server is running in ${NODE_ENV}`
   });
 });
 
